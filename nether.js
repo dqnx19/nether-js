@@ -2,7 +2,7 @@ export function log(message, type) {
     console.log(message);
 }
 
-export function logWarn(message) {
+export function logWarning(message) {
     console.warn(message);
 }
 
@@ -18,25 +18,27 @@ export function alert(message) {
     window.alert(message);
 }
 
+export function scrollUp(behavior = "smooth") {
+    window.scrollTo({
+        top: 0,
+        behavior: behavior
+    });
+}
+
 export function importJS(src) {
-    return new Promise((resolve, reject) => {
-        const script = document.createElement('script');
-        script.src = src;
-        script.onload = () => resolve();
-        script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
-        document.head.appendChild(script);
-    })
+    const script = document.createElement('script');
+    script.src = src;
+    script.onerror = () => logError(`Failed to load script: ${src}`);
+    document.head.appendChild(script);
 };
 
 export function importCSS(href) {
-    return new Promise((resolve, reject) => {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = href;
-        link.onload = () => resolve();
-        link.onerror = () => reject(new Error(`Failed to load stylesheet: ${href}`));
-        document.head.appendChild(link);
-    });
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    link.onload = () => logInfo(`Stylesheet loaded: ${href}`);
+    link.onerror = () => logError(`Failed to load stylesheet: ${href}`);
+    document.head.appendChild(link);
 }
 
 export function setTitle(title) {
