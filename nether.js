@@ -1,11 +1,21 @@
 export function log(message, type) {
-    if (type === 'error') {
-        console.error(message);
-    } else if (type === 'warning') {
-        console.warn(message);
-    } else {
-        console.log(message);
-    }
+    console.log(message);
+}
+
+export function logWarn(message) {
+    console.warn(message);
+}
+
+export function logError(message) {
+    console.error(message);
+}
+
+export function logInfo(message) {
+    console.info(message);
+}
+
+export function alert(message) {
+    window.alert(message);
 }
 
 export function importJS(src) {
@@ -27,4 +37,19 @@ export function importCSS(href) {
         link.onerror = () => reject(new Error(`Failed to load stylesheet: ${href}`));
         document.head.appendChild(link);
     });
+}
+
+export function setTitle(title) {
+    document.title = title;
+}
+
+export function setFavicon(iconUrl) {
+    if (document.querySelector("link[rel='icon']")) {
+        document.querySelector("link[rel='icon']").href = iconUrl;
+    } else {
+        const link = document.createElement("link");
+        link.rel = "icon";
+        link.href = iconUrl;
+        document.head.appendChild(link);
+    }
 }
