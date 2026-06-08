@@ -55,3 +55,27 @@ export function setFavicon(iconUrl) {
         document.head.appendChild(link);
     }
 }
+
+export function importJSFromList(jsFilesList = []) {
+    jsFilesList.forEach(file => {
+        const script = document.createElement("script");
+        script.src = file;
+        script.defer = true;
+        document.head.appendChild(script);
+    });
+}
+
+export function importCSSFromList(cssFilesList = []) {
+    cssFilesList.forEach(file => {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = file;
+        document.head.appendChild(link);
+    });
+}
+
+export function createElement(elementName, appendTo = document.body) {
+    const element = document.createElement(elementName);
+    appendTo.appendChild(element);
+    return element;
+}
