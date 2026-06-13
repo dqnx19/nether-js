@@ -80,14 +80,14 @@ export function createElement(elementName, appendTo = document.body) {
     return element;
 }
 
-function setContentOfHeader(content) {
+export function setContentOfHeader(content) {
     document.querySelector("header").innerHTML = content;
 }
 
-function setContentOfMain(content) {
+export function setContentOfMain(content) {
     document.querySelector("main").innerHTML = content;
 }
 
-function setContentOfFooter(content) {
+export function setContentOfFooter(content) {
     document.querySelector("footer").innerHTML = content;
 }
