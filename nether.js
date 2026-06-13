@@ -79,3 +79,15 @@ export function createElement(elementName, appendTo = document.body) {
     appendTo.appendChild(element);
     return element;
 }
+
+function setContentOfHeader(content) {
+    document.querySelector("header").innerHTML = content;
+}
+
+function setContentOfMain(content) {
+    document.querySelector("main").innerHTML = content;
+}
+
+function setContentOfFooter(content) {
+    document.querySelector("footer").innerHTML = content;
+}

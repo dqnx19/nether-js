@@ -55,7 +55,7 @@ function showHome() {
 
 function showFunctions() {
     main.innerHTML = `
-        <h1>Function</h1>
+        <h1>Functions</h1>
         <section>
             <div class="grouped-list">
                 <button class="item" onclick="showFunction_"></button>
