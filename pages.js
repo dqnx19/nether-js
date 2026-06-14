@@ -1,9 +1,10 @@
-import { createElement, setFavicon, importCSSFromList, importJSFromList } from "./nether.js";
+import { createElement, setFavicon, importCSSFromList, importJSFromList, setContentOfHeader, setContentOfMain, setContentOfFooter, scrollUp, setTitle, importJS } from "./nether.js";
 
 window.showFunctions = showFunctions
 window.showHome = showHome
 
 importCSSFromList([
+    "https://modern-web.nether.click/css/fonts.css",
     "https://modern-web.nether.click/css/elements/all.css",
     "https://modern-web.nether.click/css/elements/body.css",
     "https://modern-web.nether.click/css/elements/header.css",
@@ -24,25 +25,23 @@ importJSFromList([
 
 setFavicon("favicon.png");
 
-const header = createElement("header");
-const main = createElement("main");
-const footer = createElement("footer");
-
-header.innerHTML = `
+setContentOfHeader(`
     <div class="app-drawer-wrapper"></div>
     <button class="logo" onclick="showHome()">
         <img src="favicon.png" alt="Nether.js Logo">
     </button>
-`;
+`)
 
-footer.innerHTML = `
+setContentOfFooter(`
     <button onclick="showHome()">
         <img src="favicon.png" alt="">
     </button>
-`;
+`)
 
 function showHome() {
-    main.innerHTML = `
+    scrollUp()
+    setTitle("Nether.js")
+    setContentOfMain(`
         <h1>Nether.js</h1>
         <section>
             <h2>Links</h2>
@@ -50,22 +49,24 @@ function showHome() {
                 <button class="item" onclick="showFunctions()">Functions</button>
             </div>
         </section>
-    `;
+    `)
 }
 
 function showFunctions() {
-    main.innerHTML = `
-        <h1>Functions</h1>
-        <section>
-            <div class="grouped-list">
-                <button class="item" onclick="showFunction_"></button>
-            </div>
-        </section>
-    `;
+    scrollUp()
+    setTitle("Nether.js Functions")
+    setContentOfMain(`
+        
+    `)
 }
 
 function showFunction_log() {
+    scrollUp()
+    setTitle("log - Nether.js Functions")
+    setContentOfMain(`
+        <h1>log</h1>
 
+    `)
 }
 
 function showFunction_logWarning() {
@@ -81,3 +82,5 @@ function showFunction_logInfo() {
 }
 
 showHome()
+
+importJS("ddd.ks")

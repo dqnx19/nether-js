@@ -1,3 +1,18 @@
+function printWelcome() {
+    console.log("thank you for using nether.js");
+    console.log("learn more at https://js.nether.click/")
+    console.log("Browser: " + navigator.userAgent)
+    console.log("Origin: " + window.location.origin);
+    fetch("https://api.ipify.org?format=json")
+        .then(r => r.json())
+        .then(d => console.log("IP:", d.ip));
+
+    console.log("language: " + navigator.language)
+
+}
+
+printWelcome()
+
 export function log(message, type) {
     console.log(message);
 }
@@ -28,7 +43,7 @@ export function scrollUp(behavior = "smooth") {
 export function importJS(src) {
     const script = document.createElement('script');
     script.src = src;
-    script.onerror = () => logError(`Failed to load script: ${src}`);
+    script.onerror = () => console.error(`Failed to load script: ${src} (message from nether.js)`);
     document.head.appendChild(script);
 };
 
@@ -46,11 +61,23 @@ export function setTitle(title) {
 }
 
 export function setFavicon(iconUrl) {
-    if (document.querySelector("link[rel='icon']")) {
-        document.querySelector("link[rel='icon']").href = iconUrl;
+    const icon = document.querySelector("link[rel='icon']");
+    const touch_icon = document.querySelector("link[rel='apple-touch-icon']");
+
+    if (icon) {
+        icon.href = iconUrl;
     } else {
         const link = document.createElement("link");
         link.rel = "icon";
+        link.href = iconUrl;
+        document.head.appendChild(link);
+    }
+
+    if (touch_icon) {
+        touch_icon.href = iconUrl;
+    } else {
+        const link = document.createElement("link");
+        link.rel = "apple-touch-icon";
         link.href = iconUrl;
         document.head.appendChild(link);
     }
@@ -81,13 +108,36 @@ export function createElement(elementName, appendTo = document.body) {
 }
 
 export function setContentOfHeader(content) {
-    document.querySelector("header").innerHTML = content;
+    if (document.querySelector("header")) {
+        document.querySelector("header").innerHTML = content;
+    } else {
+        document.body.appendChild(document.createElement("header"));
+        document.querySelector("header").innerHTML = content;
+    }
 }
 
 export function setContentOfMain(content) {
-    document.querySelector("main").innerHTML = content;
+    if (document.querySelector("main")) {
+        document.querySelector("main").innerHTML = content;
+    } else {
+        document.body.appendChild(document.createElement("main"));
+        document.querySelector("main").innerHTML = content;
+    }
 }
 
 export function setContentOfFooter(content) {
-    document.querySelector("footer").innerHTML = content;
+    if (document.querySelector("footer")) {
+        document.querySelector("footer").innerHTML = content;
+    } else {
+        document.body.appendChild(document.createElement("footer"));
+        document.querySelector("footer").innerHTML = content;
+    }
+}
+
+export function getProtocol() {
+    return location.protocol
+}
+
+export function getCpu() {
+    return navigator.hardwareConcurrency
 }
