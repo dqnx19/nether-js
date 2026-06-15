@@ -1,9 +1,9 @@
-import { createElement, setFavicon, importCSSFromList, importJSFromList, setContentOfHeader, setContentOfMain, setContentOfFooter, scrollUp, setTitle, importJS } from "./nether.js";
+import { createElement, setFavicon, importCSSFromList, importJSFromList, setContentOfHeader, setContentOfMain, setContentOfFooter, scrollUp, setTitle, importJS, setAttribute } from "./nether.js";
 
 window.showFunctions = showFunctions
 window.showHome = showHome
 
-importCSSFromList([
+await importCSSFromList([
     "https://modern-web.nether.click/css/fonts.css",
     "https://modern-web.nether.click/css/elements/all.css",
     "https://modern-web.nether.click/css/elements/body.css",
@@ -19,24 +19,31 @@ importCSSFromList([
     "https://modern-web.nether.click/css/components/app-drawer.css"
 ]);
 
-importJSFromList([
+await importJSFromList([
     "https://modern-web.nether.click/js/components/footer-bar.js"
 ])
 
-setFavicon("favicon.png");
+await importJSFromList([
+    "https://nether.click/js/import-app-drawer.js",
+    "https://modern-web.nether.click/js/components/app-drawer.js"
+])
 
-setContentOfHeader(`
+await setFavicon("favicon.png");
+
+await setContentOfHeader(`
     <div class="app-drawer-wrapper"></div>
     <button class="logo" onclick="showHome()">
         <img src="favicon.png" alt="Nether.js Logo">
     </button>
 `)
 
-setContentOfFooter(`
+await setContentOfFooter(`
     <button onclick="showHome()">
         <img src="favicon.png" alt="">
     </button>
 `)
+
+setAttribute("html", "lang", "en")
 
 function showHome() {
     scrollUp()
@@ -54,10 +61,42 @@ function showHome() {
 
 function showFunctions() {
     scrollUp()
-    setTitle("Nether.js Functions")
+    setTitle("Functions - Nether.js")
     setContentOfMain(`
-        
+        <h1>Functions</h1>
+        <!-- <section>
+            <div class="grouped-list">
+                <button class="item" onclick="showFunction_log()">log</button>
+                <button class="item" onclick="showFunction_logWarning()">logWarning</button>
+                <button class="item" onclick="showFunction_logError()">logError</button>
+                <button class="item" onclick="showFunction_logInfo()">logInfo</button>
+                <button class="item" onclick="showFunction_alert()">alert</button>
+                <button class="item" onclick="showFunction_scrollUp()">scrollUp</button>
+                <button class="item" onclick="showFunction_importJS()">importJS</button>
+                <button class="item" onclick="showFunction_importCSS()">importCSS</button>
+                <button class="item" onclick="showFunction_setTitle()">setTitle</button>
+                <button class="item" onclick="showFunction_setFavicon()">setFavicon</button>
+                <button class="item" onclick="showFunction_importJSFromList()">importJSFromList</button>
+                <button class="item" onclick="showFunction_importCSSFromList()">importCSSFromList</button>
+                <button class="item" onclick="showFunction_createElement()">createElement</button>
+                <button class="item" onclick="showFunction_setContentOfHeader()">setContentOfHeader</button>
+                <button class="item" onclick="showFunction_setContentOfMain()">setContentOfMain</button>
+                <button class="item" onclick="showFunction_setContentOfFooter()">setContentOfFooter</button>
+                <button class="item" onclick="showFunction_getProtocol()">getProtocol</button>
+                <button class="item" onclick="showFunction_getCpu()">getCpu</button>
+                <button class="item" onclick="showFunction_getMemory()">getMemory</button>
+                <button class="item" onclick="showFunction_getURLParam()">getURLParam</button>
+                <button class="item" onclick="showFunction_setHTML()">setHTML</button>
+                <button class="item" onclick="showFunction_setText()">setText</button>
+                <button class="item" onclick="showFunction_setAttribute()"></button>
+            </div>
+        </section>-->
     `)
+}
+
+function showAbout() {
+    scrollUp()
+    setTitle("About - Nether.js")
 }
 
 function showFunction_log() {
@@ -82,5 +121,3 @@ function showFunction_logInfo() {
 }
 
 showHome()
-
-importJS("ddd.ks")
