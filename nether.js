@@ -28,8 +28,8 @@ export function scrollUp(behavior = "smooth") {
 export function importJS(src) {
     const script = document.createElement('script');
     script.src = src;
-    script.onload = () => console.log(`Script (JS) stylesheet: ${src}`)
-    script.onerror = () => console.error(`Failed to load script: ${src} (message from nether.js)`);
+    script.onload = () => console.log(`Script (JS) loaded: ${src} (nether.js - importJS)`)
+    script.onerror = () => console.error(`Script (JS) Failed to load: ${src} (nether.js - importJS)`);
     document.head.appendChild(script);
 }
 
@@ -37,8 +37,8 @@ export function importCSS(href) {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = href;
-    link.onload = () => console.log(`Stylesheet (CSS) loaded: ${href}`);
-    link.onerror = () => console.log(`Failed to load stylesheet: ${href}`);
+    link.onload = () => console.log(`Stylesheet (CSS) loaded: ${href} (nether.js - importCSS)`);
+    link.onerror = () => console.error(`Stylesheet (CSS) Failed to load: ${href} (nether.js - importCSS)`);
     document.head.appendChild(link);
 }
 
