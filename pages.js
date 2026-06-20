@@ -23,18 +23,21 @@ await importJSFromList([
     "https://modern-web.nether.click/components/js/app-drawer.js",
 ])
 
-await setFavicon("favicon.png");
+await setFavicon("img/icons/favicon.png");
 
 await setContentOfHeader(`
     <div class="app-drawer-wrapper"></div>
-    <button class="logo" onclick="showHome()">
-        <img src="favicon.png" alt="Nether.js Logo">
+    <button class="logo" onclick="showHome()" title="Displays home page">
+        <img src="img/icons/favicon.png" alt="Nether.js Logo">
     </button>
 `)
 
 await setContentOfFooter(`
-    <button onclick="showHome()">
-        <img src="favicon.png" alt="">
+    <button onclick="showHome()" title="Displays Home Page">
+        <img src="img/icons/favicon.png" alt="Nether.js Logo">
+    </button>
+    <button onclick="showFunctions()" title="Displays Functions">
+        <img src="img/links-icons/functions.svg" alt="Functions page icon">
     </button>
 `)
 
@@ -54,7 +57,7 @@ function showHome() {
     `)
 }
 
-function showFunctions() {
+async function showFunctions() {
     scrollUp();
     setTitle("Nether.js Functions");
     setContentOfMain(`
@@ -64,18 +67,7 @@ function showFunctions() {
         </section>
     `);
 
-    const functions = [
-        { name: "log", what_it_does: "Writes message to console using console.log", parameters: "message", example_usage: `log("Hello, World!")` },
-        { name: "logWarning", what_it_does: "Writes warning to console using console.warn", parameters:"message", example_usage: `logWarning("Hello, World!")`},
-        { name: "logError", what_it_does: "Writes error to console using console.error", parameters: "message", example_usage: `logError("Hello, World!")`},
-        { name: "logInfo", what_it_does: "Writes information to console using console.info", parameters: "message", example_usage: `logInfo("Hello, World!")`},
-        { name: "alert", what_it_does: "shows window alert using window.alert", parameters: "message", example_usage: `alert("Hello, World!")`},
-        { name: "scrollUp", what_it_does: "scrolls to the top of page", parameters: "behavior", example_usage: [
-            "scrollUp()",
-            "scrollUp(smooth)",
-            "scrollUp(auto)"
-        ]},
-    ];
+    const functions = await fetch("db.json").then(r => r.json());
 
     const list = document.getElementById("functions-list");
 
@@ -87,8 +79,8 @@ function showFunctions() {
 
         list.appendChild(button);
     });
-
 }
+
 
 function showFunction(name, what, params, examples) {
     scrollUp();

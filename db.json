@@ -1,0 +1,52 @@
+[
+    {
+        "name": "log",
+        "what_it_does": "Writes message to console using console.log",
+        "parameters": "message",
+        "example_usage": [
+            "log(`Hello World!`)"
+        ]
+    },
+    {
+        "name": "logWarning",
+        "what_it_does": "Writes warning to console using console.warn",
+        "parameters": "message",
+        "example_usage": [
+            "logWarning(`Hello, World!`)"
+        ]
+    },
+    {
+        "name": "logError",
+        "what_it_does": "Writes error to console using console.error",
+        "parameters": "message",
+        "example_usage": [
+            "logError(`Hello, World!`)"
+        ]
+    },
+    {
+        "name": "logInfo",
+        "what_it_does": "Writes information to console using console.info",
+        "parameters": "message",
+        "example_usage": [
+            "logInfo(:Hello, World!:)"
+        ]
+    },
+    {
+        "name": "alert",
+        "what_it_does": "shows window alert using window.alert",
+        "parameters": "message",
+        "example_usage": [
+            "alert(:Hello, World!:)"
+        ]
+    },
+    {
+        "name": "scrollUp",
+        "what_it_does": "scrolls to the top of page",
+        "parameters": "behavior",
+        "example_usage": [
+            "scrollUp()",
+            "scrollUp(smooth)",
+            "scrollUp(auto)"
+        ]
+    }
+]
