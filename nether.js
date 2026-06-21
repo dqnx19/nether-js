@@ -46,25 +46,25 @@ export function setTitle(title) {
     document.title = title;
 }
 
-export function setFavicon(iconUrl) {
+export function setFavicon(path = favicon.png) {
     const icon = document.querySelector("link[rel='icon']");
     const touch_icon = document.querySelector("link[rel='apple-touch-icon']");
 
     if (icon) {
-        icon.href = iconUrl;
+        icon.href = path;
     } else {
         const link = document.createElement("link");
         link.rel = "icon";
-        link.href = iconUrl;
+        link.href = path;
         document.head.appendChild(link);
     }
 
     if (touch_icon) {
-        touch_icon.href = iconUrl;
+        touch_icon.href = path;
     } else {
         const link = document.createElement("link");
         link.rel = "apple-touch-icon";
-        link.href = iconUrl;
+        link.href = path;
         document.head.appendChild(link);
     }
 }
@@ -173,4 +173,27 @@ export function setAttribute(selector, attribute, content) {
     } else {
         document.querySelector(selector)[attribute] = content;
     }
+}
+
+export function redirect(url) {
+    window.location.href = url
+}
+
+export function add(number1, number2) {
+    return number1 + number2;
+}
+
+export function subtract(number1, number2) {
+    return number1 - number2;
+}
+
+export function multiply(number1, number2) {
+    return number1 * number2;
+}
+
+export function divide(number1, number2) {
+    if (number2 === 0) {
+        throw new Error("Cannot divide by zero.");
+    }
+    return number1 / number2;
 }

@@ -28,7 +28,7 @@
         "what_it_does": "Writes information to console using console.info",
         "parameters": "message",
         "example_usage": [
-            "logInfo(:Hello, World!:)"
+            "logInfo(`Hello, World!`)"
         ]
     },
     {
@@ -36,17 +36,194 @@
         "what_it_does": "shows window alert using window.alert",
         "parameters": "message",
         "example_usage": [
-            "alert(:Hello, World!:)"
+            "alert(`Hello, World!`)"
         ]
     },
     {
         "name": "scrollUp",
         "what_it_does": "scrolls to the top of page",
-        "parameters": "behavior",
+        "parameters": "behavior (smooth by default)",
         "example_usage": [
             "scrollUp()",
-            "scrollUp(smooth)",
-            "scrollUp(auto)"
+            "scrollUp(`smooth`)",
+            "scrollUp(`auto`)"
+        ]
+    },
+    {
+        "name": "importJS",
+        "what_it_does": "Imports javaScript",
+        "parameters": "src",
+        "example_usage": [
+            "importJS(`script.js`)"
+        ]
+    },
+    {
+        "name": "importCSS",
+        "what_it_does": "Imports stylesheet",
+        "parameters": "href",
+        "example_usage": [
+            "importCSS(`style.css`)"
+        ]
+    },
+    {
+        "name": "setTitle",
+        "what_it_does": "Sets website title using document.title",
+        "parameters": "title",
+        "example_usage": [
+            "setTitle(`Hello, World!`)"
+        ]
+    },
+    {
+        "name": "setFavicon",
+        "what_it_does": "sets website favicon",
+        "parameters": "path",
+        "example_usage": [
+            "setFavicon(`favicon.png`)"
+        ]
+    },
+    {
+        "name": "importJSFromList",
+        "what_it_does": "Imports one or more js files",
+        "parameters": "jsFilesList = []",
+        "example_usage": [
+            "importJSFromList([script1.js, script2.js])"
+        ]
+    },
+    {
+        "name": "importCSSFromList",
+        "what_it_does": "Imports one or more css files",
+        "parameters": "cssFilesList ([] by default)",
+        "example_usage": [
+            "importCSSFromList([style1.css, style2.css])"
+        ]
+    },
+    {
+        "name": "createElement",
+        "what_it_does": "Creates HTML element",
+        "parameters": "elementName, appendTo (document.body by default)",
+        "example_usage": [
+            "createElement('div')",
+            "createElement('script', 'document.head')"
+        ]
+    },
+    {
+        "name": "setContentOfHeader",
+        "what_it_does": "Sets innerHTML of header element",
+        "parameters": "content",
+        "example_usage": [
+            "setContentOfHeader('<p>Hello, World!</p>')"
+        ]
+    },
+    {
+        "name": "setContentOfMain",
+        "what_it_does": "Sets innerHTML of main element",
+        "parameters": "content",
+        "example_usage": [
+            "setContentOfMain('<p>Hello, World!</p>')"
+        ]
+    },
+    {
+        "name": "setContentOfFooter",
+        "what_it_does": "Sets innerHTML of footer element",
+        "parameters": "content",
+        "example_usage": [
+            "setContentOfFooter('<p>Hello, World!</p>')"
+        ]
+    },
+    {
+        "name": "getProtocol",
+        "what_it_does": "Returns on what protocol the website is running (http, https)",
+        "parameters": "no parameters",
+        "example_usage": [
+            "getProtocol()"
+        ]
+    },
+    {
+        "name": "getCpu",
+        "what_it_does": "return number of processor cores",
+        "parameters": "no parameters",
+        "example_usage": [
+            "getCpu()"
+        ]
+    },
+    {
+        "name": "getMemory",
+        "what_it_does": "Returns Device memory (ram)",
+        "parameters": "no parameters",
+        "example_usage": [
+            "getMemory()"
+        ]
+    },
+    {
+        "name": "getURLParam",
+        "what_it_does": "Returns value of specified url param",
+        "parameters": "name",
+        "example_usage": [
+            "getURLParam(lang)"
+        ]
+    },
+    {
+        "name": "setHTML",
+        "what_it_does": "sets innerHTML of specified selector",
+        "parameters": "selector, content",
+        "example_usage": [
+            "setHTML('header', '<p>Content</p>')"
+        ]
+    },
+    {
+        "name": "setText",
+        "what_it_does": "sets innerText of specified selector",
+        "parameters": "selector, content",
+        "example_usage": [
+            "setText('header', 'Content')"
+        ]
+    },
+    {
+        "name": "setAttribute",
+        "what_it_does": "Sets any attribute of any element",
+        "parameters": "selector, attribute, content",
+        "example_usage": [
+            "setAttribute('html', 'lang', 'en')"
+        ]
+    },
+    {
+        "name": "redirect",
+        "what_it_does": "Redirects user to specified url",
+        "parameters": "url",
+        "example_usage": [
+            "redirect('https://google.com')"
+        ]
+    },
+    {
+        "name": "add",
+        "what_it_does": "adds two numbers",
+        "parameters": "number1, number2",
+        "example_usage": [
+            "add('1', '1')"
+        ]
+    },
+    {
+        "name": "subtract",
+        "what_it_does": "subtracts two numbers",
+        "parameters": "number1, number2",
+        "example_usage": [
+            "subtract('2', '1')"
+        ]
+    },
+    {
+        "name": "multiply",
+        "what_it_does": "multiply two numbers",
+        "parameters": "number1, number2",
+        "example_usage": [
+            "multiply('2', '2')"
+        ]
+    },
+    {
+        "name": "divide",
+        "what_it_does": "divide two numbers",
+        "parameters": "number1, number2",
+        "example_usage": [
+            "divide('2', '2')"
         ]
     }
 ]
