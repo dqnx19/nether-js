@@ -16,11 +16,13 @@ await importCSSFromList([
     "https://modern-web.nether.click/components/css/grouped-list.css",
     "https://modern-web.nether.click/components/css/app-drawer.css",
     "https://modern-web.nether.click/components/css/copy-box.css",
+    "https://modern-web.nether.click/components/css/tabs-switching.css"
 ]);
 
 await importJSFromList([
     "https://nether.click/js/import-app-drawer.js",
     "https://modern-web.nether.click/components/js/app-drawer.js",
+    "https://modern-web.nether.click/components/js/tabs-switching.js"
 ])
 
 await setFavicon("img/icons/favicon.png");
@@ -104,20 +106,33 @@ function showFunction(name, what, params, examples) {
 
     setContentOfMain(`
         <h1>${name}</h1>
-
         <section>
-            <h2>Description</h2>
-            <p>${what}</p>
-        </section>
-
-        <section>
-            <h2>Parameters</h2>
-            <p>${params}</p>
-        </section>
-
-        <section>
-            <h2>Examples</h2>
-            ${examplesHTML}
+            <div class="tabs-switching">
+                <div class="tabs">
+                    <button class="tab active" onclick="showTab('what', this)">What it does</button>
+                    <button class="tab" onclick="showTab('params', this)">Parameters</button>
+                    <button class="tab" onclick="showTab('examples', this)">Examples</button>
+                </div>
+                <div class="tab-content active" id="what">
+                    <h2>Description</h2>
+                    <p>${what}</p>
+                </div>
+                <div class="tab-content" id="params">
+                    <h2>Parameters</h2>
+                    <div class="copy-box">
+                        <div class="head">
+                            <span class="language">JS</span>
+                        </div>
+                        <div class="body">
+                            <pre class="code">${name}(${params})</pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="examples">
+                    <h2>Examples</h2>
+                    ${examplesHTML}
+                </div>
+            </div>
         </section>
     `);
 }
