@@ -46,7 +46,7 @@ export function setTitle(title) {
     document.title = title;
 }
 
-export function setFavicon(path = favicon.png) {
+export function setFavicon(path = 'favicon.png') {
     const icon = document.querySelector("link[rel='icon']");
     const touch_icon = document.querySelector("link[rel='apple-touch-icon']");
 
@@ -147,7 +147,7 @@ export function getURLParam(name) {
 export function setHTML(selector, content) {
     const setHTML_selector = document.querySelector(selector);
 
-    if (setHTML_selector) {
+    if (!setHTML_selector) {
         console.error(`Selector "${selector}" not found on page. (nether.js - setHTML)"`)
         return
     } else {
@@ -158,7 +158,7 @@ export function setHTML(selector, content) {
 export function setText(selector, content) {
     const setText_selector = document.querySelector(selector)
 
-    if (setText_selector) {
+    if (!setText_selector) {
         console.error(`Selector "${selector}" not found on page. (nether.js - setText)"`)
         return
     } else {
@@ -171,7 +171,7 @@ export function setAttribute(selector, attribute, content) {
         console.error(`Selector ${selector} not found on page (nether.js - setAttribute)`);
         return;
     } else {
-        document.querySelector(selector)[attribute] = content;
+        document.querySelector(selector).setAttribute(attribute, content);
     }
 }
 
