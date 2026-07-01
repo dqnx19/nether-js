@@ -98,6 +98,22 @@
         ]
     },
     {
+        "name": "injectCSS",
+        "what_it_does": "Injects CSS into the page",
+        "parameters": "content",
+        "example_usage": [
+            "injectCSS(`body { background-color: red; }`)"
+        ]
+    },
+    {
+        "name": "injectJS",
+        "what_it_does": "Injects JS into the page",
+        "parameters": "content",
+        "example_usage": [
+            "injectJS(`console.log('Hello, World!')`)"
+        ]
+    },
+    {
         "name": "createElement",
         "what_it_does": "Creates HTML element",
         "parameters": "elementName, appendTo (document.body by default)",
@@ -184,6 +200,32 @@
         "parameters": "selector, attribute, content",
         "example_usage": [
             "setAttribute('html', 'lang', 'en')"
+        ]
+    },
+    {
+        "name": "addClass",
+        "what_it_does": "adds a class to an HTML element",
+        "parameters": "selector, name",
+        "example_usage": [
+            "addClass(body, light)",
+            "addClass(body, dark)"
+        ]
+    },
+    {
+        "name": "removeClass",
+        "what_it_does": "removes a class from an HTML element",
+        "parameters": "selector, name",
+        "example_usage": [
+            "removeClass(body, light)",
+            "removeClass(body, dark)"
+        ]
+    },
+    {
+        "name": "setID",
+        "what_it_does": "sets the ID of an HTML element",
+        "parameters": "selector, name",
+        "example_usage": [
+            "setID(body, app)"
         ]
     },
     {

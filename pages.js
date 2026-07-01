@@ -12,7 +12,6 @@ await importCSSFromList([
     "https://modern-web.nether.click/components/css/footer.css",
     "https://modern-web.nether.click/components/css/section.css",
     "https://modern-web.nether.click/components/css/headings.css",
-    "https://modern-web.nether.click/components/css/logo.css",
     "https://modern-web.nether.click/components/css/grouped-list.css",
     "https://modern-web.nether.click/components/css/app-drawer.css",
     "https://modern-web.nether.click/components/css/copy-box.css",
@@ -61,7 +60,7 @@ function showHome() {
 
 async function showFunctions() {
     scrollUp();
-    setTitle("Nether.js Functions");
+    setTitle("Functions - Nether.js");
     setContentOfMain(`
         <h1>Functions</h1>
         <section>
@@ -86,7 +85,7 @@ async function showFunctions() {
 
 function showFunction(name, what, params, examples) {
     scrollUp();
-    setTitle(`${name} - Nether.js Function`);
+    setTitle(`${name} - Functions - Nether.js`);
 
     let examplesHTML = "";
 
@@ -109,13 +108,25 @@ function showFunction(name, what, params, examples) {
         <section>
             <div class="tabs-switching">
                 <div class="tabs">
-                    <button class="tab active" onclick="showTab('what', this)">What it does</button>
-                    <button class="tab" onclick="showTab('params', this)">Parameters</button>
-                    <button class="tab" onclick="showTab('examples', this)">Examples</button>
+                    <button class="tab active" onclick="showTab('what')" data-tab="what">What it does</button>
+                    <button class="tab" onclick="showTab('import')" data-tab="import">Import</button>
+                    <button class="tab" onclick="showTab('params')" data-tab="params">Parameters</button>
+                    <button class="tab" onclick="showTab('examples')" data-tab="examples">Examples</button>
                 </div>
                 <div class="tab-content active" id="what">
                     <h2>Description</h2>
                     <p>${what}</p>
+                </div>
+                <div class="tab-content" id="import">
+                    <h2>Import</h2>
+                    <div class="copy-box">
+                        <div class="head">
+                            <span class="language">JS</span>
+                        </div>
+                        <div class="body">
+                            <pre class="code">import { ${name} } from "https://js.nether.click/nether.js"</pre>
+                        </div>
+                    </div>
                 </div>
                 <div class="tab-content" id="params">
                     <h2>Parameters</h2>

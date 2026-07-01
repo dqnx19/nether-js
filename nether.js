@@ -81,6 +81,18 @@ export async function importCSSFromList(cssFilesList = []) {
     });
 }
 
+export function injectCSS(content) {
+    const style = document.createElement('style');
+    style.textContent = content;
+    document.head.appendChild(style);
+}
+
+export function injectJS(content) {
+    const script = document.createElement('script');
+    script.textContent = content;
+    document.head.appendChild(script);
+}
+
 export function createElement(elementName, appendTo = document.body) {
     const element = document.createElement(elementName);
 
@@ -173,6 +185,18 @@ export function setAttribute(selector, attribute, content) {
     } else {
         document.querySelector(selector).setAttribute(attribute, content);
     }
+}
+
+export function addClass(selector, name) {
+    document.querySelector(selector).classList.add = (name)
+}
+
+export function removeClass(selector, name) {
+    document.querySelector(selector).classList.remove = (name)
+}
+
+export function setID(selector, name) {
+    document.querySelector(selector).id = name
 }
 
 export function redirect(url) {
