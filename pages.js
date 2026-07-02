@@ -5,23 +5,23 @@ window.showHome = showHome
 
 await importCSSFromList([
     "https://modern-web.nether.click/fonts/lexend/lexend.css",
-    "https://modern-web.nether.click/components/css/all.css",
-    "https://modern-web.nether.click/components/css/body.css",
-    "https://modern-web.nether.click/components/css/header.css",
-    "https://modern-web.nether.click/components/css/main.css",
-    "https://modern-web.nether.click/components/css/footer.css",
-    "https://modern-web.nether.click/components/css/section.css",
-    "https://modern-web.nether.click/components/css/headings.css",
-    "https://modern-web.nether.click/components/css/grouped-list.css",
-    "https://modern-web.nether.click/components/css/app-drawer.css",
-    "https://modern-web.nether.click/components/css/copy-box.css",
-    "https://modern-web.nether.click/components/css/tabs-switching.css"
+    "https://web-ui.nether.click/components/css/all.css",
+    "https://web-ui.nether.click/components/css/body.css",
+    "https://web-ui.nether.click/components/css/header.css",
+    "https://web-ui.nether.click/components/css/main.css",
+    "https://web-ui.nether.click/components/css/footer.css",
+    "https://web-ui.nether.click/components/css/section.css",
+    "https://web-ui.nether.click/components/css/headings.css",
+    "https://web-ui.nether.click/components/css/grouped-list.css",
+    "https://web-ui.nether.click/components/css/app-drawer.css",
+    "https://web-ui.nether.click/components/css/copy-box.css",
+    "https://web-ui.nether.click/components/css/tabs-switching.css"
 ]);
 
 await importJSFromList([
     "https://nether.click/js/import-app-drawer.js",
-    "https://modern-web.nether.click/components/js/app-drawer.js",
-    "https://modern-web.nether.click/components/js/tabs-switching.js"
+    "https://web-ui.nether.click/components/js/app-drawer.js",
+    "https://web-ui.nether.click/components/js/tabs-switching.js"
 ])
 
 await setFavicon("img/icons/favicon.png");
