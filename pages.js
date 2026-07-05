@@ -4,7 +4,7 @@ window.showFunctions = showFunctions
 window.showHome = showHome
 
 await importCSSFromList([
-    "https://modern-web.nether.click/fonts/lexend/lexend.css",
+    "https://web-ui.nether.click/fonts/lexend/lexend.css",
     "https://web-ui.nether.click/components/css/all.css",
     "https://web-ui.nether.click/components/css/body.css",
     "https://web-ui.nether.click/components/css/header.css",
