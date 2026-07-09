@@ -267,5 +267,15 @@
         "example_usage": [
             "divide('2', '2')"
         ]
+    },
+    {
+        "name": "highlightSyntax",
+        "what_it_does": "highlights syntax of code (e.g. html)",
+        "parameters": "language, selector",
+        "example_usage": [
+            "highlightSyntax('js', 'code.js')",
+            "highlightSyntax('css', 'code.css')",
+            "highlightSyntax('html', 'code.html')"
+        ]
     }
 ]

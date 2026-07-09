@@ -1,20 +1,34 @@
-import { createElement, setFavicon, importCSSFromList, importJSFromList, setContentOfHeader, setContentOfMain, setContentOfFooter, scrollUp, setTitle, importJS, setAttribute } from "./nether.js";
+import { createElement, highlightSyntax, setFavicon, importCSSFromList, importJSFromList, setContentOfHeader, setContentOfMain, setContentOfFooter, scrollUp, setTitle, importJS, setAttribute } from "./nether.js";
 
-window.showFunctions = showFunctions
 window.showHome = showHome
+window.showSourceCode = showSourceCode
+window.showFunctions = showFunctions
+window.showFunction = showFunction
+window.showAbout = showAbout
+
 
 await importCSSFromList([
     "https://web-ui.nether.click/fonts/lexend/lexend.css",
+
     "https://web-ui.nether.click/components/css/all.css",
-    "https://web-ui.nether.click/components/css/body.css",
-    "https://web-ui.nether.click/components/css/header.css",
-    "https://web-ui.nether.click/components/css/main.css",
-    "https://web-ui.nether.click/components/css/footer.css",
-    "https://web-ui.nether.click/components/css/section.css",
-    "https://web-ui.nether.click/components/css/headings.css",
-    "https://web-ui.nether.click/components/css/grouped-list.css",
     "https://web-ui.nether.click/components/css/app-drawer.css",
+
+    "https://web-ui.nether.click/components/css/body.css",
+
     "https://web-ui.nether.click/components/css/copy-box.css",
+    "https://web-ui.nether.click/components/css/cards.css",
+
+    "https://web-ui.nether.click/components/css/footer.css",
+
+    "https://web-ui.nether.click/components/css/grouped-list.css",
+
+    "https://web-ui.nether.click/components/css/header.css",
+    "https://web-ui.nether.click/components/css/headings.css",
+
+    "https://web-ui.nether.click/components/css/main.css",
+    
+    "https://web-ui.nether.click/components/css/section.css",
+    
     "https://web-ui.nether.click/components/css/tabs-switching.css"
 ]);
 
@@ -37,8 +51,14 @@ await setContentOfFooter(`
     <button onclick="showHome()" title="Displays Home Page">
         <img src="img/icons/favicon.png" alt="Nether.js Logo">
     </button>
-    <button onclick="showFunctions()" title="Displays Functions">
+    <button onclick="showSourceCode()" title="Displays Source code page">
+        <img src="img/links-icons/source-code.svg" alt="Source code page icon">
+    </button>
+    <button onclick="showFunctions()" title="Displays Functions page">
         <img src="img/links-icons/functions.svg" alt="Functions page icon">
+    </button>
+    <button onclick="showAbout()" title="Displays About page">
+        <img src="img/links-icons/about.svg" alt="About page icon">
     </button>
 `)
 
@@ -49,13 +69,65 @@ function showHome() {
     setTitle("Nether.js")
     setContentOfMain(`
         <h1>Nether.js</h1>
+        <div class="cards">
+            <div class="card">
+                <div class="header">
+                    <img src="img/links-icons/source-code.svg" alt="Source code page link icon">
+                    <span class="heading">Source code</span>
+                </div>
+                <div class="body">
+                    <span>Source code and link to it</span>
+                    <button onclick="showSourceCode()">Visit link</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="header">
+                    <img src="img/links-icons/functions.svg" alt="Functions page link icon">
+                    <span class="heading">Functions</span>
+                </div>
+                <div class="body">
+                    <span>List of all function</span>
+                    <button onclick="showFunctions()">Visit link</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="header">
+                    <img src="img/links-icons/about.svg" alt="">
+                    <span class="heading">About</span>
+                </div>
+                <div class="body">
+                    <span>Information about the project</span>
+                    <button onclick="showAbout()">Visit link</button>
+                </div>
+            </div>
+        </div>
+    `)
+}
+
+async function showSourceCode() {
+    scrollUp();
+    setTitle("Source code - Nether.js");
+    setContentOfMain(`
+        <h1>Source code</h1>
         <section>
-            <h2>Links</h2>
-            <div class="grouped-list">
-                <button class="item" onclick="showFunctions()">Functions</button>
+            <div class="copy-box">
+                <div class="head">
+                    <span class="language">JS</span>
+                </div>
+                <div class="body">
+                    <pre class="code" id="source-code"></pre>
+                </div>
             </div>
         </section>
-    `)
+    `);
+
+    const response = await fetch("nether.js");
+    const sourceCode = await response.text();
+
+    const pre = document.querySelector("pre#source-code");
+    pre.textContent = sourceCode;
+
+    highlightSyntax("js", "#source-code")
 }
 
 async function showFunctions() {
