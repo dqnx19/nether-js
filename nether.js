@@ -187,17 +187,37 @@ export function setAttribute(selector, attribute, content) {
     }
 }
 
-export function addClass(selector, name) {
-    document.querySelector(selector).classList.add = (name)
+function addClass(target, className) {
+    if (typeof target === "string") target = document.querySelector(target);
+    target.classList.add(className);
 }
 
-export function removeClass(selector, name) {
-    document.querySelector(selector).classList.remove = (name)
+function removeClass(target, className) {
+    if (typeof target === "string") target = document.querySelector(target);
+    target.classList.remove(className);
 }
 
-export function setID(selector, name) {
-    document.querySelector(selector).id = name
+function setClass(target, className) {
+    if (typeof target === "string") target = document.querySelector(target);
+    target.className = className;
 }
+
+function addId(target, id) {
+    if (typeof target === "string") target = document.querySelector(target);
+    target.id = id;
+}
+
+function removeId(target) {
+    if (typeof target === "string") target = document.querySelector(target);
+    target.removeAttribute("id");
+}
+
+function setId(target, id) {
+    if (typeof target === "string") target = document.querySelector(target);
+    target.id = id;
+}
+
+
 
 export function redirect(url) {
     window.location.href = url

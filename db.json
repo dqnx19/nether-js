@@ -213,6 +213,51 @@
     },
     {
         "name": "removeClass",
+        "what_it_does": "Removes a class from an HTML element",
+        "parameters": "target, className",
+        "example_usage": [
+            "removeClass('body', 'light')",
+            "removeClass(document.body, 'dark')"
+        ]
+    },
+    {
+        "name": "setClass",
+        "what_it_does": "Replaces all classes of an HTML element with the specified class",
+        "parameters": "target, className",
+        "example_usage": [
+            "setClass('body', 'dark')",
+            "setClass(document.body, 'light')"
+        ]
+    },
+    {
+        "name": "addId",
+        "what_it_does": "Sets an ID on an HTML element",
+        "parameters": "target, id",
+        "example_usage": [
+            "addId('body', 'app')",
+            "addId(document.body, 'app')"
+        ]
+    },
+    {
+        "name": "removeId",
+        "what_it_does": "Removes the ID from an HTML element",
+        "parameters": "target",
+        "example_usage": [
+            "removeId('body')",
+            "removeId(document.body)"
+        ]
+    },
+    {
+        "name": "setId",
+        "what_it_does": "Sets the ID of an HTML element",
+        "parameters": "target, id",
+        "example_usage": [
+            "setId('body', 'app')",
+            "setId(document.body, 'app')"
+        ]
+    },
+    {
+        "name": "removeClass",
         "what_it_does": "removes a class from an HTML element",
         "parameters": "selector, name",
         "example_usage": [

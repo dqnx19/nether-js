@@ -1,14 +1,17 @@
-<h1>Nether.js</h2>
+#  Nether.js
 
-<h2>About the project</h2>
-<p>Nether.js is a JavaScript framework for making web pages by adding many function that do what they say (setFavicon, setTitle, scrollUp etc.)</p>
-<p>Because of that, it's slogan is Type what you want to do</p>
+## About the project
+Nether.js is a lightweight JavaScript framework that provides simple utility functions for common web development tasks.
 
-<h2>How to use it in your project<h2>
-<p>add the following code to the start of your .js script file</p>
+It includes functions for things such as setting the page title or favicon, scrolling the page, manipulating HTML elements, and more.
 
-```bash
+The goal of Nether.js is to make common JavaScript tasks easier by providing simple functions with clear and descriptive names.
+
+## How to use it in your project
+add the following code to the start of your .js script file
+
+```javascript
 import { } from "https://js.nether.click"
 ```
 
-<p>Between the curly brackets add functions from nether.js</p>
+Between the curly brackets add functions from nether.js
