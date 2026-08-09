@@ -217,10 +217,10 @@ function setId(target, id) {
     target.id = id;
 }
 
-
-
-export function redirect(url) {
-    window.location.href = url
+export function redirect(url, timing) {
+    setTimeout(() => {
+        window.location.href = url;
+    }, timing);
 }
 
 export function add(number1, number2) {

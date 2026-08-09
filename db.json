@@ -276,9 +276,10 @@
     {
         "name": "redirect",
         "what_it_does": "Redirects user to specified url",
-        "parameters": "url",
+        "parameters": "url, timing",
         "example_usage": [
-            "redirect('https://google.com')"
+            "redirect('https://google.com')",
+            "redirect('https://google.com', '1000')"
         ]
     },
     {

@@ -1,11 +1,10 @@
-import { createElement, highlightSyntax, setFavicon, importCSSFromList, importJSFromList, setContentOfHeader, setContentOfMain, setContentOfFooter, scrollUp, setTitle, importJS, setAttribute } from "./nether.js";
+import { redirect, createElement, highlightSyntax, setFavicon, importCSSFromList, importJSFromList, setContentOfHeader, setContentOfMain, setContentOfFooter, scrollUp, setTitle, importJS, setAttribute } from "./nether.js";
 
 window.showHome = showHome
 window.showSourceCode = showSourceCode
 window.showFunctions = showFunctions
 window.showFunction = showFunction
 window.showAbout = showAbout
-
 
 await importCSSFromList([
     "https://web-ui.nether.click/fonts/lexend/lexend.css",
