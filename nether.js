@@ -187,32 +187,32 @@ export function setAttribute(selector, attribute, content) {
     }
 }
 
-function addClass(target, className) {
+export function addClass(target, className) {
     if (typeof target === "string") target = document.querySelector(target);
     target.classList.add(className);
 }
 
-function removeClass(target, className) {
+export function removeClass(target, className) {
     if (typeof target === "string") target = document.querySelector(target);
     target.classList.remove(className);
 }
 
-function setClass(target, className) {
+export function setClass(target, className) {
     if (typeof target === "string") target = document.querySelector(target);
     target.className = className;
 }
 
-function addId(target, id) {
+export function addId(target, id) {
     if (typeof target === "string") target = document.querySelector(target);
     target.id = id;
 }
 
-function removeId(target) {
+export function removeId(target) {
     if (typeof target === "string") target = document.querySelector(target);
     target.removeAttribute("id");
 }
 
-function setId(target, id) {
+export function setId(target, id) {
     if (typeof target === "string") target = document.querySelector(target);
     target.id = id;
 }
