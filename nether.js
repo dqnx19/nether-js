@@ -157,35 +157,35 @@ export function getURLParam(name) {
 }
 
 export function setHTML(selector, content) {
-    const setHTML_selector = document.querySelector(selector);
+    if (typeof selector === "string") selector = document.querySelector(selector);
 
-    if (!setHTML_selector) {
-        console.error(`Selector "${selector}" not found on page. (nether.js - setHTML)"`)
-        return
-    } else {
-        setHTML_selector.innerHTML = `${content}`
+    if (!selector) {
+        console.error(`Selector not found on page. (nether.js - setHTML)`);
+        return;
     }
+    selector.innerHTML = `${content}`;
 }
 
 export function setText(selector, content) {
-    const setText_selector = document.querySelector(selector)
+    if (typeof selector === "string") selector = document.querySelector(selector);
 
-    if (!setText_selector) {
-        console.error(`Selector "${selector}" not found on page. (nether.js - setText)"`)
-        return
-    } else {
-        document.querySelector(selector).innerText = `${content}`
+    if (!selector) {
+        console.error(`Selector not found on page. (nether.js - setText)`);
+        return;
     }
+    selector.innerText = `${content}`;
 }
 
 export function setAttribute(selector, attribute, content) {
-    if (!document.querySelector(selector)) {
-        console.error(`Selector ${selector} not found on page (nether.js - setAttribute)`);
+    if (typeof selector === "string") selector = document.querySelector(selector);
+
+    if (!selector) {
+        console.error(`Selector not found on page. (nether.js - setAttribute)`);
         return;
-    } else {
-        document.querySelector(selector).setAttribute(attribute, content);
     }
+    selector.setAttribute(attribute, content);
 }
+
 
 export function addClass(target, className) {
     if (typeof target === "string") target = document.querySelector(target);
