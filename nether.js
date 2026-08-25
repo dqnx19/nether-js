@@ -70,15 +70,15 @@ export function setFavicon(path = 'favicon.png') {
 }
 
 export async function importJSFromList(jsFilesList = []) {
-    jsFilesList.forEach(file => {
-        importJS(file)
-    });
+    for (const file of jsFilesList) {
+        await importJS(file);
+    }
 }
 
 export async function importCSSFromList(cssFilesList = []) {
-    cssFilesList.forEach(file => {
-        importCSS(file)
-    });
+    for (const file of cssFilesList) {
+        await importCSS(file);
+    }
 }
 
 export function injectCSS(content) {
