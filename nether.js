@@ -26,20 +26,36 @@ export function scrollUp(behavior = "smooth") {
 }
 
 export function importJS(src) {
-    const script = document.createElement('script');
-    script.src = src;
-    script.onload = () => console.log(`Script (JS) loaded: ${src} (nether.js - importJS)`)
-    script.onerror = () => console.error(`Script (JS) Failed to load: ${src} (nether.js - importJS)`);
-    document.head.appendChild(script);
+    return new Promise((resolve) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = () => {
+            console.log(`Script (JS) loaded: ${src} (nether.js - importJS)`);
+            resolve();
+        };
+        script.onerror = () => {
+            console.error(`Script (JS) Failed to load: ${src} (nether.js - importJS)`);
+            resolve(); // Zde zavoláme resolve místo reject, aby skript nezablokoval zbytek stránky
+        };
+        document.head.appendChild(script);
+    });
 }
 
 export function importCSS(href) {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = href;
-    link.onload = () => console.log(`Stylesheet (CSS) loaded: ${href} (nether.js - importCSS)`);
-    link.onerror = () => console.error(`Stylesheet (CSS) Failed to load: ${href} (nether.js - importCSS)`);
-    document.head.appendChild(link);
+    return new Promise((resolve) => {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = href;
+        link.onload = () => {
+            console.log(`Stylesheet (CSS) loaded: ${href} (nether.js - importCSS)`);
+            resolve();
+        };
+        link.onerror = () => {
+            console.error(`Stylesheet (CSS) Failed to load: ${href} (nether.js - importCSS)`);
+            resolve(); // Pokračuje se dál i při chybějícím CSS
+        };
+        document.head.appendChild(link);
+    });
 }
 
 export function setTitle(title) {
@@ -70,15 +86,11 @@ export function setFavicon(path = 'favicon.png') {
 }
 
 export async function importJSFromList(jsFilesList = []) {
-    for (const file of jsFilesList) {
-        await importJS(file);
-    }
+    await Promise.all(jsFilesList.map(file => importJS(file)));
 }
 
 export async function importCSSFromList(cssFilesList = []) {
-    for (const file of cssFilesList) {
-        await importCSS(file);
-    }
+    await Promise.all(cssFilesList.map(file => importCSS(file)));
 }
 
 export function injectCSS(content) {
