@@ -1,9 +1,7 @@
 import { redirect, createElement, highlightSyntax, setFavicon, importCSSFromList, importJSFromList, setContentOfHeader, setContentOfMain, setContentOfFooter, scrollUp, setTitle, importJS, setAttribute } from "./nether.js";
 
 window.showHome = showHome
-window.showSourceCode = showSourceCode
 window.showFunctions = showFunctions
-window.showFunction = showFunction
 window.showAbout = showAbout
 
 await importCSSFromList([
@@ -34,7 +32,8 @@ await importCSSFromList([
 await importJSFromList([
     "https://nether.click/js/import-app-drawer.js",
     "https://web-ui.nether.click/components/js/app-drawer.js",
-    "https://web-ui.nether.click/components/js/tabs-switching.js"
+    "https://web-ui.nether.click/components/js/tabs.js",
+    "https://web-ui.nether.click/components/js/headings.js"
 ])
 
 await setFavicon("img/icons/favicon.png");
@@ -63,11 +62,10 @@ await setContentOfFooter(`
 
 await setAttribute("html", "lang", "en")
 
-function showHome() {
+async function showHome() {
     scrollUp()
     setTitle("Nether.js")
     setContentOfMain(`
-        <h1>Nether.js</h1>
         <div class="cards">
             <div class="card">
                 <div class="header">
@@ -101,122 +99,49 @@ function showHome() {
             </div>
         </div>
     `)
-}
 
-async function showSourceCode() {
-    scrollUp();
-    setTitle("Source code - Nether.js");
-    setContentOfMain(`
-        <h1>Source code</h1>
-        <section>
-            <div class="copy-box">
-                <div class="head">
-                    <span class="language">JS</span>
-                </div>
-                <div class="body">
-                    <pre class="code" id="source-code"></pre>
-                </div>
-            </div>
-        </section>
-    `);
+    nwui.headings.create({
+        parent: "main",
+        level: 1,
+        content: "Nether.js"
+    });
 
-    const response = await fetch("nether.js");
-    const sourceCode = await response.text();
+    nwui.cards.create({
+        parent: "main",
+        id: "links"
+    })
 
-    const pre = document.querySelector("pre#source-code");
-    pre.textContent = sourceCode;
+    const db = await fetch("json/pages.json").then(r => r.json());
 
-    highlightSyntax("js", "#source-code")
+    db.forEach(element => {
+        nwui.cards.addCard({
+            onclick: element.func,
+            image: `img/links-icons/${element.techname}.svg`,
+            heading: `${element.name}`,
+            parent: "#links"
+        })
+    });
+
 }
 
 async function showFunctions() {
     scrollUp();
     setTitle("Functions - Nether.js");
-    setContentOfMain(`
-        <h1>Functions</h1>
-        <section>
-            <div class="grouped-list" id="functions-list"></div>
-        </section>
-    `);
+    setContentOfMain("");
 
     const functions = await fetch("db.json").then(r => r.json());
 
-    const list = document.getElementById("functions-list");
+    nwui.headings.create({
+        level: 1,
+        parent: "main",
+        content: "Functions"
+    })
+    nwui.tabs.create({
+        parent: "main",
+        id: "functions"
+    })
 
-    functions.forEach(fn => {
-        const button = createElement("button");
-        button.textContent = fn.name;
-        button.onclick = () => showFunction(fn.name, fn.what_it_does, fn.parameters, fn.example_usage);
-        button.classList.add("item");
-
-        list.appendChild(button);
-    });
-}
-
-
-function showFunction(name, what, params, examples) {
-    scrollUp();
-    setTitle(`${name} - Functions - Nether.js`);
-
-    let examplesHTML = "";
-
-    examples.forEach(ex => {
-        examplesHTML += `
-            <div class="copy-box">
-                <div class="head">
-                    <span class="language">JavaScript (JS)</span>
-                </div>
-                <div class="body">
-                    <pre class="code">${ex}</pre>
-                </div>
-            </div>
-            <br>
-        `;
-    });
-
-    setContentOfMain(`
-        <h1>${name}</h1>
-        <section>
-            <div class="tabs-switching">
-                <div class="tabs">
-                    <button class="tab active" onclick="showTab('what')" data-tab="what">What it does</button>
-                    <button class="tab" onclick="showTab('import')" data-tab="import">Import</button>
-                    <button class="tab" onclick="showTab('params')" data-tab="params">Parameters</button>
-                    <button class="tab" onclick="showTab('examples')" data-tab="examples">Examples</button>
-                </div>
-                <div class="tab-content active" id="what">
-                    <h2>Description</h2>
-                    <p>${what}</p>
-                </div>
-                <div class="tab-content" id="import">
-                    <h2>Import</h2>
-                    <div class="copy-box">
-                        <div class="head">
-                            <span class="language">JS</span>
-                        </div>
-                        <div class="body">
-                            <pre class="code">import { ${name} } from "https://js.nether.click/nether.js"</pre>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-content" id="params">
-                    <h2>Parameters</h2>
-                    <div class="copy-box">
-                        <div class="head">
-                            <span class="language">JS</span>
-                        </div>
-                        <div class="body">
-                            <pre class="code">${name}(${params})</pre>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-content" id="examples">
-                    <h2>Examples</h2>
-                    ${examplesHTML}
-                </div>
-            </div>
-        </section>
-    `);
+    nwui.tabs.addTab()
 }
 
 function showAbout() {

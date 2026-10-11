@@ -1,28 +1,72 @@
-export function log(message, type) {
-    console.log(message);
+export function alert(options = {}) {
+    window.alert(options.message);
 }
 
-export function logWarning(message) {
-    console.warn(message);
+export function log(options = {}) {
+    switch (options.type) {
+        case "log":
+            console.log(options.message);
+            break;
+
+        case "warning":
+            console.log(options.message);
+            break;
+
+        case "error":
+            console.error(options.message);
+            break;
+
+        case "info":
+            console.info(options.message);
+            break;
+    }
 }
 
-export function logError(message) {
-    console.error(message);
-}
-
-export function logInfo(message) {
-    console.info(message);
-}
-
-export function alert(message) {
-    window.alert(message);
-}
-
-export function scrollUp(behavior = "smooth") {
+export function scrollUp() {
     window.scrollTo({
         top: 0,
-        behavior: behavior
+        behavior: "smooth"
     });
+}
+
+async function savePDF(options = {}) {
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF();
+
+    options.content.forEach(object => {
+        switch (object.type) {
+            case "text":
+                pdf.setFont(object.font, object.bold ? "bold" : "normal");
+                pdf.setFontSize(object.size ?? 12);
+                pdf.text(object.text, object.left, object.top);
+
+                break;
+        }
+    })
+
+    const filename = options.name.endsWith(".pdf")
+        ? options.name
+        : options.name + ".pdf";
+
+    pdf.save(filename)
+}
+
+const pdfcontent = {
+    name: "",
+    content: [
+        {
+            type: "text",
+
+            font: "",
+            bold: "",
+
+            size: "",
+
+            text: "",
+            left: "",
+            top: "",
+        }
+    ]
 }
 
 export function importJS(src) {
@@ -62,12 +106,12 @@ export function setTitle(title) {
     document.title = title;
 }
 
-export function setFavicon(path = 'favicon.png') {
+export function setFavicon(options = {}) {
     const icon = document.querySelector("link[rel='icon']");
     const touch_icon = document.querySelector("link[rel='apple-touch-icon']");
 
     if (icon) {
-        icon.href = path;
+        icon.href = options.url;
     } else {
         const link = document.createElement("link");
         link.rel = "icon";

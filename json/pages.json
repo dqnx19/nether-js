@@ -1,0 +1,12 @@
+[
+    {
+        "techname": "functions",
+        "name": "Functions",
+        "func": "showFunctions()"
+    },
+    {
+        "techname": "about",
+        "name": "About",
+        "func": "showAbout()"
+    }
+]
