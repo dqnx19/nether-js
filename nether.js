@@ -2,6 +2,29 @@ export function alert(options = {}) {
     window.alert(options.message);
 }
 
+export function importJS(options = {}) {
+    return new Promise((resolve) => {
+        const script = document.createElement('script');
+        script.src = options.src;
+        script.onload = () => {
+            console.log(`Script (JS) loaded: ${options.src} (nether.js - importJS)`);
+            resolve();
+        };
+        script.onerror = () => {
+            console.error(`Script (JS) Failed to load: ${options.src} (nether.js - importJS)`);
+            resolve();
+        };
+
+        script.defer = options.defer ? true : false
+
+        const target = options.placement === "head"
+            ? document.head
+            : document.body;
+
+        target.appendChild(script);
+    });
+}
+
 export function log(options = {}) {
     switch (options.type) {
         case "log":
@@ -22,14 +45,7 @@ export function log(options = {}) {
     }
 }
 
-export function scrollUp() {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-}
-
-async function savePDF(options = {}) {
+export async function savePDF(options = {}) {
     const { jsPDF } = window.jspdf;
     const pdf = new jsPDF();
 
@@ -51,37 +67,10 @@ async function savePDF(options = {}) {
     pdf.save(filename)
 }
 
-const pdfcontent = {
-    name: "",
-    content: [
-        {
-            type: "text",
-
-            font: "",
-            bold: "",
-
-            size: "",
-
-            text: "",
-            left: "",
-            top: "",
-        }
-    ]
-}
-
-export function importJS(src) {
-    return new Promise((resolve) => {
-        const script = document.createElement('script');
-        script.src = src;
-        script.onload = () => {
-            console.log(`Script (JS) loaded: ${src} (nether.js - importJS)`);
-            resolve();
-        };
-        script.onerror = () => {
-            console.error(`Script (JS) Failed to load: ${src} (nether.js - importJS)`);
-            resolve(); // Zde zavoláme resolve místo reject, aby skript nezablokoval zbytek stránky
-        };
-        document.head.appendChild(script);
+export function scrollUp() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
     });
 }
 
@@ -96,7 +85,7 @@ export function importCSS(href) {
         };
         link.onerror = () => {
             console.error(`Stylesheet (CSS) Failed to load: ${href} (nether.js - importCSS)`);
-            resolve(); // Pokračuje se dál i při chybějícím CSS
+            resolve();
         };
         document.head.appendChild(link);
     });
